@@ -140,7 +140,7 @@
               <av:PointCollection x:Key="ConnectorLocation">110,616.4 110,646.4 210,646.4 210,715.6</av:PointCollection>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <Sequence sap2010:Annotation.AnnotationText="If the transaction item is processed without any exception, its status is updated as Successful." DisplayName="Success" sap:VirtualizedContainerService.HintSize="862.4,2407.2" sap2010:WorkflowViewState.IdRef="Sequence_11">
+          <Sequence sap2010:Annotation.AnnotationText="If the transaction item is processed without any exception, its status is updated as Successful." DisplayName="Success" sap:VirtualizedContainerService.HintSize="862.4,2384" sap2010:WorkflowViewState.IdRef="Sequence_11">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -148,20 +148,20 @@
                 <x:Boolean x:Key="IsPinned">False</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <If Condition="[in_TransactionItem isNot Nothing AndAlso (in_TransactionItem.GetType is GetType(System.Net.Mail.MailMessage))]" DisplayName="If TransactionItem is a QueueItem (Success)" sap:VirtualizedContainerService.HintSize="820.8,1872.8" sap2010:WorkflowViewState.IdRef="If_7">
+            <If Condition="[in_TransactionItem isNot Nothing AndAlso (in_TransactionItem.GetType is GetType(System.Net.Mail.MailMessage))]" DisplayName="If TransactionItem is a QueueItem (Success)" sap:VirtualizedContainerService.HintSize="820.8,1849.6" sap2010:WorkflowViewState.IdRef="If_7">
               <If.Then>
-                <ui:RetryScope DisplayName="Retry Set Transaction Status (Success)" sap:VirtualizedContainerService.HintSize="785.6,1684" sap2010:WorkflowViewState.IdRef="RetryScope_2" NumberOfRetries="[Cint(in_Config(&quot;RetryNumberSetTransactionStatus&quot;))]">
+                <ui:RetryScope DisplayName="Retry Set Transaction Status (Success)" sap:VirtualizedContainerService.HintSize="785.6,1660.8" sap2010:WorkflowViewState.IdRef="RetryScope_2" NumberOfRetries="[Cint(in_Config(&quot;RetryNumberSetTransactionStatus&quot;))]">
                   <ui:RetryScope.ActivityBody>
                     <ActivityAction>
-                      <TryCatch DisplayName="Try Catch Set Transaction Status (Success)" sap:VirtualizedContainerService.HintSize="744,1508" sap2010:WorkflowViewState.IdRef="TryCatch_11">
+                      <TryCatch DisplayName="Try Catch Set Transaction Status (Success)" sap:VirtualizedContainerService.HintSize="744,1484.8" sap2010:WorkflowViewState.IdRef="TryCatch_11">
                         <TryCatch.Try>
-                          <Sequence sap:VirtualizedContainerService.HintSize="707.2,1276.8" sap2010:WorkflowViewState.IdRef="Sequence_98">
+                          <Sequence sap:VirtualizedContainerService.HintSize="707.2,1253.6" sap2010:WorkflowViewState.IdRef="Sequence_98">
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>
-                            <Switch x:TypeArguments="x:String" DisplayName="Switch" Expression="[io_ProcessType]" sap:VirtualizedContainerService.HintSize="665.6,1184" sap2010:WorkflowViewState.IdRef="Switch`1_1">
+                            <Switch x:TypeArguments="x:String" DisplayName="Switch for process type" Expression="[io_ProcessType]" sap:VirtualizedContainerService.HintSize="665.6,1160.8" sap2010:WorkflowViewState.IdRef="Switch`1_1">
                               <sap:WorkflowViewStateService.ViewState>
                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -175,32 +175,32 @@
                                     <x:Boolean x:Key="IsPinned">False</x:Boolean>
                                   </scg:Dictionary>
                                 </sap:WorkflowViewStateService.ViewState>
-                                <ui:LogMessage DisplayName="Log Message - Setting transaction status" sap:VirtualizedContainerService.HintSize="584,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_47" Level="Info" Message="[&quot;Setting the transaction status for: &quot;+ io_ProcessType.ToString+ &quot; for DO Number: &quot;+ in_TransactionItem.Subject.ToString]" />
-                                <ueab:ExcelProcessScopeX DisplayAlerts="{x:Null}" ExistingProcessAction="{x:Null}" FileConflictResolution="{x:Null}" LaunchMethod="{x:Null}" LaunchTimeout="{x:Null}" MacroSettings="{x:Null}" ProcessMode="{x:Null}" ShowExcelWindow="{x:Null}" DisplayName="Excel Process Scope - Update status for current lineitem" sap:VirtualizedContainerService.HintSize="584,724.8" sap2010:WorkflowViewState.IdRef="ExcelProcessScopeX_5">
+                                <ui:LogMessage DisplayName="Log Message - Setting transaction status Daily" sap:VirtualizedContainerService.HintSize="584,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_47" Level="Info" Message="[&quot;Setting the transaction status for: &quot;+ io_ProcessType.ToString+ &quot; for DO Number: &quot;+ in_TransactionItem.Subject.ToString]" />
+                                <ueab:ExcelProcessScopeX DisplayAlerts="{x:Null}" ExistingProcessAction="{x:Null}" FileConflictResolution="{x:Null}" LaunchMethod="{x:Null}" LaunchTimeout="{x:Null}" MacroSettings="{x:Null}" ProcessMode="{x:Null}" ShowExcelWindow="{x:Null}" DisplayName="Excel Process Scope - Update status for current lineitem DAily" sap:VirtualizedContainerService.HintSize="584,724.8" sap2010:WorkflowViewState.IdRef="ExcelProcessScopeX_5">
                                   <ueab:ExcelProcessScopeX.Body>
                                     <ActivityAction x:TypeArguments="ui:IExcelProcess">
                                       <ActivityAction.Argument>
                                         <DelegateInArgument x:TypeArguments="ui:IExcelProcess" Name="ExcelProcessScopeTag" />
                                       </ActivityAction.Argument>
-                                      <Sequence DisplayName="Do - Update status for current lineitem" sap:VirtualizedContainerService.HintSize="550.4,638.4" sap2010:WorkflowViewState.IdRef="Sequence_100">
+                                      <Sequence DisplayName="Do - Update status for current lineitem DAily" sap:VirtualizedContainerService.HintSize="550.4,638.4" sap2010:WorkflowViewState.IdRef="Sequence_100">
                                         <sap:WorkflowViewStateService.ViewState>
                                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                           </scg:Dictionary>
                                         </sap:WorkflowViewStateService.ViewState>
-                                        <ueab:ExcelApplicationCard Password="{x:Null}" ReadFormatting="{x:Null}" CreateNewFile="False" DisplayName="Use Excel File - Update status for current lineitem" sap:VirtualizedContainerService.HintSize="508.8,545.6" sap2010:WorkflowViewState.IdRef="ExcelApplicationCard_5" ResizeWindow="None" UseTemplate="True" WorkbookPath="[io_OutputFileDaily]">
+                                        <ueab:ExcelApplicationCard Password="{x:Null}" ReadFormatting="{x:Null}" CreateNewFile="False" DisplayName="Use Excel File - Update status for current lineitem DAily" sap:VirtualizedContainerService.HintSize="508.8,545.6" sap2010:WorkflowViewState.IdRef="ExcelApplicationCard_5" ResizeWindow="None" UseTemplate="True" WorkbookPath="[io_OutputFileDaily]">
                                           <ueab:ExcelApplicationCard.Body>
                                             <ActivityAction x:TypeArguments="ue:IWorkbookQuickHandle">
                                               <ActivityAction.Argument>
                                                 <DelegateInArgument x:TypeArguments="ue:IWorkbookQuickHandle" Name="OutputMasterExcel" />
                                               </ActivityAction.Argument>
-                                              <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="475.2,252.8" sap2010:WorkflowViewState.IdRef="Sequence_99">
+                                              <Sequence DisplayName="Do Daily" sap:VirtualizedContainerService.HintSize="475.2,252.8" sap2010:WorkflowViewState.IdRef="Sequence_99">
                                                 <sap:WorkflowViewStateService.ViewState>
                                                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                                   </scg:Dictionary>
                                                 </sap:WorkflowViewStateService.ViewState>
-                                                <ueab:WriteCellX AutoIncrementRow="True" Cell="[OutputMasterExcel.Sheet(&quot;Sheet1&quot;).Cell(&quot;E&quot;+ (io_TransactionNumber+1).ToString)]" DisplayName="Write Cell for success" sap:VirtualizedContainerService.HintSize="433.6,160" sap2010:WorkflowViewState.IdRef="WriteCellX_33" Value="[&quot;Bot 3: Success&quot;]" />
+                                                <ueab:WriteCellX AutoIncrementRow="True" Cell="[OutputMasterExcel.Sheet(&quot;Sheet1&quot;).Cell(&quot;E&quot;+ (io_TransactionNumber+1).ToString)]" DisplayName="Write Cell for success DAily" sap:VirtualizedContainerService.HintSize="433.6,160" sap2010:WorkflowViewState.IdRef="WriteCellX_33" Value="[&quot;Bot 3: Success&quot;]" />
                                               </Sequence>
                                             </ActivityAction>
                                           </ueab:ExcelApplicationCard.Body>
